@@ -1,0 +1,115 @@
+Entity Framework Core 
+---------------------
+Select data from Employees Table
+--------------------------------
+ADO.NET 
+-------
+SqlConnection conn = new SqlConnection(connectionstring);
+
+SqlCommand cmd = new SqlCommand("select * from Employees",conn);
+
+conn.Open();
+
+SqlDataReader reader = cmd.ExecuteReader();
+
+if(reader.HasRows)
+{
+	while(reader.Read())
+	{
+		//logic to read data
+	}
+}
+else
+{
+	//code 
+} 
+
+reader.Close();
+conn.Close();
+
+EF or EF Core 
+-------------
+MyContext context = new MyContext();
+
+var data = context.Employees.ToList();
+
+foreach(var emp in data)
+{
+	//logic to display emp data
+}
+
+Entity Framework 6.x - .NET Framework
+
+Entity Framework Core 
+---------------------
+It is the new version of the Entity Framework
+It is based on the principle of .NET Core 
+It is light-weight and cross platform(windows,linux,mac) in nature 
+It work with .NET Core as well as with the .NET Framework
+It provides different providers that helps us connect with a variety of database server 
+
+What is ORM ?
+--------------
+ORM stands for Object Relational Mapping / Mapper 
+It is technique used to map object-oriented classes to database table 
+
+Approaches to Implement EF 6.x
+-------------------------------
+Code-First - C# Code  
+Model-First - Visual Designer 
+Database-First 
+
+Approaches to Implement EF Core 
+-------------------------------
+Code-First 
+Reverse Engineering (Database-First)- Scaffold-DbContext
+
+Practical 
+---------
+1)Create a Console Application 
+2)Add the Entity Framework Core Libraries 
+
+	Microsoft.EntityFrameworkCore - Core Library 
+	Microsoft.EntityFrameworkCore.SqlServer - Data Provider
+	Microsoft.EntityFrameworkCore.Tools - Provide CLI Commands for migration and other features 
+	Microsoft.EntityFrameworkCore.Design
+	
+	Visual Studio - Install the above package using the Nuget Package Manager 
+	
+	Visual Studio Code - Use the following commands to install the packages 
+	
+	dotnet add package Microsoft.EntityFrameworkCore --version 6.0.15
+	dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.15
+	dotnet add package Microsoft.EntityFrameworkCore.Tools --version
+	6.0.15
+	dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.15
+	
+3)Create database context and model classes  
+4)Perform basic database operations
+
+Creating a Primary Key 
+----------------------
+To create a primary key , add an auto-implemented property in the class with the name as ID or Id or ClassNameId i.e. ProductId
+
+EF core will automatically create the primary key with identity
+
+Create and Drop API 
+-------------------
+The EnsureCreated() and EnsureDeleted() methods provides a light-weight alternative to Migrations for managing the database schema.
+These methods are useful in scenarios when data is transient and can be dropped when the schema changes.
+
+Migrations
+----------
+In EF Core, Migrations allows us to keep the model and database in sync 
+
+Install the EF Core tools (VS Code)
+-------------------------
+dotnet tool install --global dotnet-ef 
+
+dotnet tool update --global dotnet-ef 
+
+dotnet ef  - list details about the tool 
+
+dotnet ef migrations add <<nameofmigration>>
+
+dotnet ef database update 
