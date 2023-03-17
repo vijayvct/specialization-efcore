@@ -57,3 +57,8 @@ C:\Demos\Dotnet Specialization 2023\EFCore\Day1-EFCore-Demo\obj\Debug\net6.0\ref
 C:\Demos\Dotnet Specialization 2023\EFCore\Day1-EFCore-Demo\obj\Debug\net6.0\Day1-EFCore-Demo.pdb
 C:\Demos\Dotnet Specialization 2023\EFCore\Day1-EFCore-Demo\obj\Debug\net6.0\Day1-EFCore-Demo.genruntimeconfig.cache
 C:\Demos\Dotnet Specialization 2023\EFCore\Day1-EFCore-Demo\obj\Debug\net6.0\ref\Day1-EFCore-Demo.dll
+C:\Demos\Dotnet Specialization 2023\EFCore\Day1-EFCore-Demo\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Demos\Dotnet Specialization 2023\EFCore\Day1-EFCore-Demo\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Binder.dll
+C:\Demos\Dotnet Specialization 2023\EFCore\Day1-EFCore-Demo\bin\Debug\net6.0\Microsoft.Extensions.Logging.Configuration.dll
+C:\Demos\Dotnet Specialization 2023\EFCore\Day1-EFCore-Demo\bin\Debug\net6.0\Microsoft.Extensions.Logging.Console.dll
+C:\Demos\Dotnet Specialization 2023\EFCore\Day1-EFCore-Demo\bin\Debug\net6.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
