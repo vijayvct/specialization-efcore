@@ -235,3 +235,11 @@ Fluent API
 		
 EF Core Conventions 
 	One to One (Employee --> EmployeeAddress)
+	
+Visual Studio 
+-------------
+Nuget Packmanager Console 
+
+	Add-Migration <<migrationname>>
+	Remove-Migration - to remove the recent migration
+	Update-Database - to apply the migration to database
