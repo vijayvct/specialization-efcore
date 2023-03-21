@@ -6,7 +6,7 @@
     <RootNamespace>Day1_EFCore_Demo</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
-    <StartupObject>Day1_EFCore_Demo.Program01</StartupObject>
+    <StartupObject>Day1_EFCore_Demo.Program03</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

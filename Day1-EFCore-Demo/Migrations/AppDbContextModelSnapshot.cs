@@ -49,6 +49,49 @@ namespace Day1_EFCore_Demo.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Day1_EFCore_Demo.Models.Person", b =>
+                {
+                    b.Property<int>("PersonId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonId"), 1L, 1);
+
+                    b.Property<string>("ContactNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LName")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PersonId");
+
+                    b.ToTable("People");
+
+                    b.HasData(
+                        new
+                        {
+                            PersonId = 1,
+                            FName = "Bill",
+                            LName = "G"
+                        },
+                        new
+                        {
+                            PersonId = 2,
+                            FName = "Scott",
+                            LName = "Hanselman"
+                        },
+                        new
+                        {
+                            PersonId = 3,
+                            FName = "Steve",
+                            LName = "J"
+                        });
+                });
+
             modelBuilder.Entity("Day1_EFCore_Demo.Models.Product", b =>
                 {
                     b.Property<int>("Id")

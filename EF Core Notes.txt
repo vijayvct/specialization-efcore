@@ -136,3 +136,102 @@ Extension Method
 	Provide alot methods to simplify the LINQ queries 
 	
 dotnet add package Microsoft.Extensions.Logging.Console --version 6.0.0
+
+Stored Procedure 
+Function 
+
+RAW SQL Queries 
+---------------
+FromSqlRaw()
+FromSqlInterpolated()
+
+Concurrency in EF Core
+----------------------
+Using Concurrency Token
+-----------------------
+Consider there are multiple users in a database and all of them are working concurrently. So when the EF Core detects data using the ConcurrencyCheck attribute, it performs a comparison of the values of that entity.
+
+If the values of the entities match then the operation is performed sucessfully, but if these values of the same entity differ from each other than that means there are concurrency confilcts in that entity due to multiple concurrent users
+
+Data Annotations 
+----------------
+public class Actor 
+{
+	public int ActorId {get;set;}
+	[ConcurrencyCheck]
+	public string LName{get;set;}
+	public string FName{get;set;}
+}
+
+Fluent API 
+----------
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+	modelBuilder.Entity<Actor>()
+			.Property(p=>p.LName)
+			.IsConcurrencyToken();
+}
+
+Using RowVersion Property
+-------------------------
+In the RowVersion property , a new column is added to the database table and it stores the version stamp of the data. A new Row version value is added eachtime a user updates the data
+
+	-If two users are working on the same database and the first user updates the data and leave , then the Second updates the data ane leave 
+	
+	-Then EF Core will compare both the update Row version properties and if the values match the operation is performed successfully
+	
+	-Otherwise, if both the Row Version values differs the operation gives a DbUpdateConcurrencyException 
+	
+Data Annotations
+----------------
+class Movie
+{
+	public int MovieId{get;set;}
+	public string Title{get;set;}
+	
+	[TimeStamp]
+	public byte[] TimeStamo{get;set;}
+}
+
+Fluent API 
+----------
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+	modelBuilder.Entity<Movie>()
+		.Property(p=>p.TimeStamp)
+		.IsRowVersion();
+}
+
+Relationship in EF Core 
+-----------------------
+Relationship defines how two or more entites are related to each other 
+In Database this done with the help of primary and foreign key relationship 
+
+One to One (Vehicle--->Registration)
+One to Many (Department--->Employees)
+Many to Many (Employee ---> Project)
+
+Principal Entity - Entity that contains primary key also refered as Parent
+Dependent Entity - Entity that contains foreign key also refered as Child 
+
+Principal Key - Key which uniquely identifies the principle entity 
+Foreign Key - Property in the dependent entity that use principal key as related key 
+
+Navigation Key - A Property defined on the principal or dependent entity that references the related entity
+
+Approaches to Implement Relationship in EF Core 
+-----------------------------------------------
+EF Core Conventions 
+Data Annotations
+Fluent API 
+	-EF Fluent API is used to configure domain classes to override conventions 
+	-EF Fluent API is based on the Fluent API Design Pattern i.e. Fluent interfaces where the results are formulated by method chaining 
+	-In EF Core, ModelBuilder class acts as a Fluent API,by using it we can configure many different things as it provides more configuration options than other approaches 
+	
+		Model Configuration
+		Entity Configuration	
+		Property Configuration
+		
+EF Core Conventions 
+	One to One (Employee --> EmployeeAddress)

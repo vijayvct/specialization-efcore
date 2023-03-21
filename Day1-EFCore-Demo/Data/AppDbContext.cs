@@ -13,7 +13,7 @@ public class AppDbContext:DbContext
     //DbSets
     public DbSet<Product> Products { get; set; }
     public DbSet<Category> Categories{get;set;}
-
+    public DbSet<Person> People{get;set;}
 
     //Creating a Custom Console Logger
     public static readonly ILoggerFactory ConsoleLoggerFactory =
@@ -28,7 +28,7 @@ public class AppDbContext:DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder
-        .UseLoggerFactory(ConsoleLoggerFactory).EnableSensitiveDataLogging()
+        //.UseLoggerFactory(ConsoleLoggerFactory).EnableSensitiveDataLogging()
         //.LogTo(Console.WriteLine)
         .UseSqlServer(connstring);
     }
@@ -48,6 +48,12 @@ public class AppDbContext:DbContext
             new Product{Id=1,Name="Pencil",Price=4.99,Description="Pencil",CategoryId=1},
             new Product{Id=2,Name="Fountain Pen",Price=299.99,Description="Fountain Pen",CategoryId=1},
             new Product{Id=3,Name="Steam Iron",Price=2999.99,Description="Steam Iron",CategoryId=2}
+        );
+
+        modelBuilder.Entity<Person>().HasData(
+            new Person {PersonId=1,FName="Bill",LName="G"},
+            new Person{PersonId=2,FName="Scott",LName="Hanselman"},
+            new Person{PersonId=3,FName="Steve",LName="J"}
         );
     }
 }
