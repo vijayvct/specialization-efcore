@@ -243,3 +243,27 @@ Nuget Packmanager Console
 	Add-Migration <<migrationname>>
 	Remove-Migration - to remove the recent migration
 	Update-Database - to apply the migration to database
+	
+Reverse-Engineering (Database-First) in EF Core 
+-----------------------------------------------
+It helps create a Entity Data Model from an existing database
+
+Visual Studio 
+--------------
+In Nuget Package Manager console we have to use the Scaffold-DbContext command to create the Entity Data Model from an existing database 
+
+Scaffold-DbContext "connectionstring" provider -Outputrdir <<folderformodel>> -ContextDir <<folderfordbcontext>>
+
+Scaffold-DbContext "data source=servename;initial catalog=dbname;integrated security=true" Microsoft.EntityFrameworkCore.SqlServer -Outputdir Models -ContextDir Data
+
+Visual Studio Code 
+------------------
+In the terminal we have to use the "dotnet ef dbcontext scaffold" to create a Entity Data Model from an existing database
+
+dotnet ef dbcontext scaffold "connectionstring" provider --output-dir Models --context-dir Data
+
+dotnet ef dbcontext scaffold "data source=CTAADPG02MWBG;initial catalog=MusicStoreDB;integrated security=true" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models --context-dir Data
+
+For Lazy Loading - Microsoft.EntityFrameworkCore.Proxies
+
+dotnet add package Microsoft.EntityFrameworkCore.Proxies --version 6.0.15
